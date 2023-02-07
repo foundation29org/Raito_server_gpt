@@ -10,7 +10,7 @@ const { conndbdata } = require('../db_connect')
 const EventsSchema = Schema({
 	type: String,
 	name: {type: String, default: ''},
-	date: {type: Date, default: Date.now},
+	date: {type: Date, default: null},
 	dateInput: {type: Date, default: Date.now},
 	notes: {type: String, default: ''},
 	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
