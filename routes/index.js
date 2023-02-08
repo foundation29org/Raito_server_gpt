@@ -29,6 +29,7 @@ const openRaitoCtrl = require('../controllers/all/openraito')
 const vcServiceCtrl = require('../services/vc.js')
 const verifierServiceCtrl = require('../services/verifier.js')
 const resourcesCtrl = require('../controllers/all/resources.js')
+const translationCtrl = require('../services/translation')
 const openAIserviceCtrl = require('../services/openai')
 
 const auth = require('../middlewares/auth')
@@ -256,6 +257,11 @@ api.post('/events/:patientId', auth(roles.OnlyUser), eventsCtrl.saveEvent)
 api.put('/events/:eventId', auth(roles.OnlyUser), eventsCtrl.updateEvent)
 api.delete('/events/:eventId', auth(roles.OnlyUser), eventsCtrl.deleteEvent)
 api.post('/massiveevents/:patientId', auth(roles.OnlyUser), eventsCtrl.saveMassiveEvent)
+
+api.post('/getDetectLanguage', translationCtrl.getDetectLanguage)
+api.post('/translation', translationCtrl.getTranslationDictionary)
+api.post('/translationinvert', translationCtrl.getTranslationDictionaryInvert)
+api.post('/translation/segments', translationCtrl.getTranslationSegments)
 
 //services OPENAI
 api.post('/callopenai', auth(roles.All), openAIserviceCtrl.callOpenAi)
