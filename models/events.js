@@ -11,6 +11,7 @@ const EventsSchema = Schema({
 	type: String,
 	name: {type: String, default: ''},
 	date: {type: Date, default: null},
+	data: {type: Object, default: {}},
 	dateInput: {type: Date, default: Date.now},
 	notes: {type: String, default: ''},
 	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}

@@ -31,6 +31,7 @@ const verifierServiceCtrl = require('../services/verifier.js')
 const resourcesCtrl = require('../controllers/all/resources.js')
 const translationCtrl = require('../services/translation')
 const openAIserviceCtrl = require('../services/openai')
+const f29apiv2serviceCtrl = require('../services/f29apiv2')
 
 const auth = require('../middlewares/auth')
 const sharedCtrl = require('../middlewares/shared')
@@ -258,13 +259,16 @@ api.put('/events/:eventId', auth(roles.OnlyUser), eventsCtrl.updateEvent)
 api.delete('/events/:eventId', auth(roles.OnlyUser), eventsCtrl.deleteEvent)
 api.post('/massiveevents/:patientId', auth(roles.OnlyUser), eventsCtrl.saveMassiveEvent)
 
-api.post('/getDetectLanguage', translationCtrl.getDetectLanguage)
-api.post('/translation', translationCtrl.getTranslationDictionary)
-api.post('/translationinvert', translationCtrl.getTranslationDictionaryInvert)
-api.post('/translation/segments', translationCtrl.getTranslationSegments)
+api.post('/getDetectLanguage', auth(roles.All), translationCtrl.getDetectLanguage)
+api.post('/translation', auth(roles.All), translationCtrl.getTranslationDictionary)
+api.post('/translationinvert', auth(roles.All), translationCtrl.getTranslationDictionaryInvert)
+api.post('/translation/segments', auth(roles.All), translationCtrl.getTranslationSegments)
 
 //services OPENAI
 api.post('/callopenai', auth(roles.All), openAIserviceCtrl.callOpenAi)
+
+//services TextAnalytics
+api.post('/callTextAnalytics',  auth(roles.All), f29apiv2serviceCtrl.callTextAnalytics)
 
 //ruta privada
 api.get('/private', auth(roles.AllLessResearcher), (req, res) => {

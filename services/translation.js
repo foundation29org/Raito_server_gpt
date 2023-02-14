@@ -62,7 +62,7 @@ function getTranslationDictionaryInvert (req, res){
 function getTranslationSegments(req, res){
     var lang = req.body.lang;
     var category = config.translationCategory;
-    var segments = req.body.info;
+    var segments = req.body.segments;
     var translationKey = config.translationKey;
     request.post({url:'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&&from=en&to='+lang+'&category='+category+'&textType=html',json: true,headers: {'Ocp-Apim-Subscription-Key': translationKey, 'Ocp-Apim-Subscription-Region': 'northeurope' },body:segments}, (error, response, body) => {
       if (error) {
@@ -72,6 +72,7 @@ function getTranslationSegments(req, res){
       if(body=='Missing authentication token.'){
         res.status(401).send(body)
       }else{
+        console.log(body)
         res.status(200).send(body)
       }
   
