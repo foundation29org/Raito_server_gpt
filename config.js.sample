@@ -21,4 +21,19 @@ module.exports = {
   keyGenomics: undefined, //Azure Storage account KEY. Use access keys to authenticate your applications when making requests to this Azure storage account.
   nameBlob: undefined, //Name of the blob
   dx29Gateway: process.env.DX29GATEWAY, // DX29 API GATEWAY
+  VC:{
+    TENANT_ID: undefined,
+    CLIENT_ID: undefined,
+    CLIENT_SECRET: undefined,
+    API_KEY: undefined,
+    AUTHORITY_DID: undefined
+  },
+  MORALIS:{
+    SERVER_URL: "undefined",
+    APP_ID: "undefined",
+    MARTER_KEY: "undefined"
+  },
+  OPENAI_API_KEY: undefined,
+  TA_KEY: undefined,
+  TA_ENDPOINT: undefined
 }
