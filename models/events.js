@@ -9,6 +9,7 @@ const { conndbdata } = require('../db_connect')
 
 const EventsSchema = Schema({
 	type: String,
+	subtype: {type: String, default: ''},
 	name: {type: String, default: ''},
 	date: {type: Date, default: null},
 	data: {type: Object, default: {}},

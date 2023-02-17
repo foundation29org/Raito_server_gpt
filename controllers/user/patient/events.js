@@ -52,6 +52,7 @@ function saveEvent (req, res){
 	let patientId= crypt.decrypt(req.params.patientId);
 	let eventdb = new Events()
 	eventdb.type = req.body.type
+	eventdb.subtype = req.body.subtype
 	eventdb.data = req.body.data
 	eventdb.date = req.body.date
 	eventdb.name = req.body.name
@@ -152,6 +153,7 @@ async function testOneEvent(actualevent, patientId){
 	})*/
 	let eventdb = new Events()
 	eventdb.type = actualevent.type
+	eventdb.subtype = actualevent.subtype
 	eventdb.data = actualevent.data
 	eventdb.date = actualevent.date
 	eventdb.name = actualevent.name
