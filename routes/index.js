@@ -17,6 +17,7 @@ const f29gatewayCtrl = require('../services/f29gateway')
 const supportCtrl = require('../controllers/all/support')
 const seizuresCtrl = require('../controllers/user/patient/seizures')
 const eventsCtrl = require('../controllers/user/patient/events')
+const qualityCtrl = require('../controllers/user/patient/quality')
 const appointmentsCtrl = require('../controllers/user/patient/appointments')
 const groupCtrl = require('../controllers/all/group')
 const medicationCtrl = require('../controllers/user/patient/medication')
@@ -263,6 +264,13 @@ api.post('/getDetectLanguage', auth(roles.All), translationCtrl.getDetectLanguag
 api.post('/translation', auth(roles.All), translationCtrl.getTranslationDictionary)
 api.post('/translationinvert', auth(roles.All), translationCtrl.getTranslationDictionaryInvert)
 api.post('/translation/segments', auth(roles.All), translationCtrl.getTranslationSegments)
+
+//quality
+
+api.post('/quality/dates/:patientId',auth(roles.All), qualityCtrl.getQualitiesDates)
+api.get('/quality/:patientId', auth(roles.UserResearcher), qualityCtrl.getQualities)
+api.post('/quality/:patientId', auth(roles.OnlyUser), qualityCtrl.saveQuality)
+api.delete('/quality/:qualityId', auth(roles.OnlyUser), qualityCtrl.deleteQuality)
 
 //services OPENAI
 api.post('/callopenai', auth(roles.All), openAIserviceCtrl.callOpenAi)
