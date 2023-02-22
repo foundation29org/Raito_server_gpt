@@ -33,6 +33,7 @@ const resourcesCtrl = require('../controllers/all/resources.js')
 const translationCtrl = require('../services/translation')
 const openAIserviceCtrl = require('../services/openai')
 const f29apiv2serviceCtrl = require('../services/f29apiv2')
+const ta = require('../services/ta')
 
 const auth = require('../middlewares/auth')
 const sharedCtrl = require('../middlewares/shared')
@@ -276,7 +277,8 @@ api.delete('/quality/:qualityId', auth(roles.OnlyUser), qualityCtrl.deleteQualit
 api.post('/callopenai', auth(roles.All), openAIserviceCtrl.callOpenAi)
 
 //services TextAnalytics
-api.post('/callTextAnalytics',  auth(roles.All), f29apiv2serviceCtrl.callTextAnalytics)
+api.post('/callTextAnalytics2',  auth(roles.All), f29apiv2serviceCtrl.callTextAnalytics)
+api.post('/callTextAnalytics',  auth(roles.All), ta.callTextAnalytics)
 
 //ruta privada
 api.get('/private', auth(roles.AllLessResearcher), (req, res) => {
